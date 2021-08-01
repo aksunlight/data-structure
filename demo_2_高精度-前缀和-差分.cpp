@@ -386,9 +386,9 @@ for (int i = 1; i <= n; ++i)
 {
 	s[i] = s[i - 1] + a[i];
 }
-//二维前缀和
+//二维前缀和，s[i][j]表示a[1-i][1-j]的所有数的和，即左上矩阵和
 const int N = 100010;
-int a[N][N], b[N][N];
+int a[N][N], s[N][N];
 for (int i = 1; i <= n; ++i)
 {
 	for (int j = 1; j <= m; ++j)
@@ -398,12 +398,111 @@ for (int i = 1; i <= n; ++i)
 }
 求左上角为x1y1右下角为x2y2的矩形的所有数的和
 sum = s[x2][y2] - s[x2][y1 - 1] - s[x1 - 1][y2] + s[x1 - 1][y1 - 1];
+for (int i = 1; i <= n; ++i)
+{
+	for (int j = 1; j <= m; ++j)
+	{
+		s[i][j] = s[i - 1][j] + s[i][j - 1] - s[i - 1][j - 1] + a[i][j];
+	}
+}
+sum = s[x2][y2] - s[x2][y1 - 1] - s[x1 - 1][y2] + s[x1 - 1][y1 - 1];
+for (int i = 1; i <= n; ++i)
+{
+	for (int j = 1; j <= n; ++j)
+	{
+		s[i][j] = s[i - 1][j] + s[i][j - 1] - s[i - 1][j - 1] + a[i][j];
+	}
+}
+sum = s[x2][y2] - s[x2][y1 - 1] - s[x1 - 1][y2] + s[x1 - 1][y1 - 1];
 
 //一维差分，原数组是差分数组的前缀和，原数组从a[l]到a[r]每个数加c只要差分数组b[l] = b[l] + c, b[r + 1] = b[r + 1] - c之后求前缀和即可得到所求的a
-//最开时a是已经给出的，b是全0的，可以看成a从全0开始[1, 1]加a[1]，[2, 2]加a[2]，...，[n, n]加a[n]
-
-
-
+//最开时a是已经给出的，b是全0的，可以看成a从全0开始[1, 1]加a[1]，[2, 2]加a[2]，...，[n, n]加a[n]，这样做完后b[i]就有了
+//a是原数组，b是差分数组，b上求前缀和即修改后的a数组
+void insert(int b[], int l, int r, int c)
+{
+	b[l] += c;
+	b[r + 1] -= c;
+}
+for (int i = 1; i <= n; ++i)
+{
+	b[i] = b[i - 1] + b[i];
+}
+void insert(int b[], int l, int r, int c)
+{
+	b[l] += c;
+	b[r + 1] -= c;
+}
+for (int i = 1; i <= n; ++i)
+{
+	b[i] = b[i - 1] + b[i];
+}
+void insert(int b[], int l, int r, int c)
+{
+	b[l] += c;
+	b[r + 1] -= c;
+}
+for (int i = 1; i <= n; ++i)
+{
+	b[i] = b[i - 1] + b[i];
+}
+//二维前差分，b[i][j]表示b[1-i][1-j]的所有数的和为a[i][j]，即左上矩阵和等于前缀和，它和一维差分类似
+//a是原数组，b是差分数组，b上求前缀和即修改后的a数组
+void intert(int** b, int x1, int y1, int x2, int y2, int c)
+{
+	b[x1][y1] += c;
+	b[x1][y2 + 1] -= c;
+	b[x2 + 1][y1] -= c;
+	b[x2 + 1][y2 + 1] += c;
+}
+for (int i = 1; i <= n; ++i)
+{
+	for (int j = 1; j <= m; ++j)
+	{
+		b[i][j] = b[i - 1][j] + b[i][j - 1] - b[i - 1][j - 1] + b[i][j];
+	}
+}
+void insert(int** b, int x1, int y1, int x2, int y2, int c)
+{
+	b[x1][y1] += c;
+	b[x2 + 1][y1] -= c;
+	b[x1][y2 + 1] -= c;
+	b[x2 + 1][y2 + 1] += c;
+}
+for (int i = 1; i <= n; ++i)
+{
+	for (int j = 1; j <= m; ++j)
+	{
+		b[i][j] = b[i - 1][j] + b[i][j - 1] - b[i - 1][j - 1] + b[i][j];
+	}
+}
+void insert(int** b, int x1, int y1, int x2, int y2, int c)
+{
+	b[x1][y1] += c;
+	b[x1][y2 + 1] -= c;
+	b[x2 + 1][y1] -= c;
+	b[x2 + 1][y2 + 1] += c;
+}
+for (int i = 1; i <= n; ++i)
+{
+	for (int j = 1; j <= m; ++j)
+	{
+		b[i][j] = b[i - 1][j] + b[i][j - 1] - b[i - 1][j - 1] + b[i][j];
+	}
+}
+void insert(int** a, int x1, int y1, int x2, int y2, int c)
+{
+	b[x1][y1] += c;
+	b[x1][y2 + 1] -= c;
+	b[x2 + 1][y1] -= c;
+	b[x2 + 1][y2 + 1] += c;
+}
+for (int i = 1; i <= n; ++i)
+{
+	for (int j = 1; j <= m; ++j)
+	{
+		b[i][j] = b[i - 1][j] + b[i][j - 1] - b[i - 1][j - 1] + b[i][j];
+	}
+}
 
 
 
