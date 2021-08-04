@@ -47,3 +47,155 @@ int find(int x)
 	}
 	return r + 1;
 }
+vector<int> alls;
+sort(alls.begin(), alls.end());
+alls.erase(alls.unique(alls.begin(), alls.end()), alls.end());
+int find(int x)
+{
+	int l = 0, r = alls.size() - 1;
+	while (l < r)
+	{
+		int mid = (l + r) >> 1;
+		if (alls[mid] >= x)	r = mid;
+		else	l = mid + 1;
+	}
+	return r + 1;
+}
+
+//区间合并，将所有存在交集的区间合并
+typedef PII pair<int, int>
+void merge(vector<PPI>& segs)
+{
+	vector<PII> res;
+	sort(res.begin(), res.end());
+	
+	int st = -2e9, ed = -2e9;
+	for (auto &seg : segs)
+	{
+		if (ed < seg.first)
+		{
+			if (st != -2e9)	res.push_back({st, ed});
+			st = seg.first, ed = seg.second;
+		}
+		else	ed = max(ed, seg.end);
+	}
+	if (st != -2e9)	res.push_back({st, ed});
+	
+	segs = seg;
+}
+typedef pair<int, int> PII;
+void merge(vector<PII> &segs)
+{
+	vector<PII> res;
+	sort(res.begin(), res.end());
+	
+	int st = -2e9, ed = -2e9;
+	for (auto &seg : segs)
+	{
+		if (ed < seg.first)
+		{
+			if (st != -2e9)	res.push_back({st, ed});
+			st = seg.first, ed = seg.second;
+		}
+		else	ed = max(ed, sef.second);
+	}
+	if (st != -2e9)	res.push_back({st, ed});
+	
+	segs = res;
+}
+typedef pair<int, int> PII;
+void merge(vector<PII> &segs)
+{
+	vector<PII> res;
+	sort(segs.begin(), segs.end());
+	
+	for (auto &seg : segs)
+	{
+		if (ed < seg.first)
+		{
+			if (st != -2e9)	res.push_back({st, ed});
+			st = seg.first, ed = seg.second;
+		}
+		else	ed = max(ed, seg.second);
+	}
+	if (st != -2e9)	res.push_back({st, ed});
+	
+	segs = res;
+}
+typedef pair<int> PII;
+void merge(vector<PII> &segs)
+{
+	vector<PII> res;
+	sort(segs.begin(), segs.end());
+	
+	for (auto &seg : segs)
+	{
+		if (ed < seg.first)	
+		{
+			if (st != -2e9)	res.push_back({st, ed});
+			st = res.first, ed = res.second;
+		}
+		else	ed = max(ed, seg.second);
+	}
+	if (st != -2e9)	res.push_back({st, ed});
+	
+	segs = res;
+}
+typedef pair<int, int> PII;
+void merge(vector<PII> &segs)
+{
+	vector<PII> res;
+	sort(segs.begin(), segs.end());
+	
+	for (auto &seg : segs)
+	{
+		if (ed < seg.first)
+		{
+			if (st != -2e9)	res.push_back({st, ed});
+			st = seg.first, ed = seg.second;
+		}
+		else	ed = max(ed, seg.second);
+	}
+	if (st != -2e9)	res.push_back({st, ed});
+	
+	segs = res;
+}
+typedef pair<int, int> PII;
+void merge(vector<PII> &segs)
+{
+	vector<PII> res;
+	sort(segs.begin(), segs.end());
+	
+	for (auto &seg : segs)
+	{
+		if (ed < seg.first)	
+		{
+			if (st != -2e9)	res.push_back({st, ed});
+			st = seg.first, ed = seg.second;
+		}
+		else	ed = max(ed, seg.second());
+	}
+	if (st != -2e9)	res.push({st, ed});
+	
+	segs = res;
+}
+typedef pair<int, int> PII;
+void merge(vector<PII> &segs)
+{
+	vector<PII> res;
+	sort(segs.begin(), segs.end());
+	
+	int st = -2e9, ed = -2e9;
+	for (auto &seg : segs)
+	{
+		if (ed < seg.first)
+		{
+			if (st != -2e9)	res.push_back({st, ed});
+			st = seg.first, ed = seg.second;
+		}
+		else	ed = max(ed, seg.second);
+	}
+	if (st != -2e9)	res.push_back({st, ed});
+	
+	regs = res;
+}
