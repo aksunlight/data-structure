@@ -135,5 +135,121 @@ void delete_k(int k)
 }
 for (int i = head; i != -1; i = ne[i])	cout << e[i] << endl;
 
+//邻接表模拟双链表
+const int N = 100010;
+int e[N], r[N], l[N], idx;
+//初始化
+void init()
+{
+	r[0] = 1;
+	l[1] = 0;
+	idx = 2;
+}
+//在k节点后插入一个节点
+void insert(int k, int x)
+{
+	e[idx] = x;
+	l[idx] = k;
+	r[idx] = r[k];
+	l[r[k]] = idx;
+	r[k] = idx;
+	idx++;
+}
+//删除k号节点
+void remove(int k)
+{
+	r[l[k]] = r[k];
+	l[r[k]] = l[k];
+}
+const int N = 100010;
+int e[N], l[N], r[N], idx;
+void init()
+{
+	r[0] = 1;
+	l[1] = 0;
+	idx = 2;
+}
+void insert(int k, int x)
+{
+	e[idx] = x;
+	l[idx] = k;
+	r[idx] = r[k];
+	l[r[k]] = idx;
+	r[k] = idx;
+	idx++;
+}
+void remove(int k)
+{
+	l[r[k]] = l[k];
+	r[l[k]] = r[k];
+}
+for (int i = 0; i != 1; i = r[i])	cout << e[i] << endl;
+const int N = 100010;
+int e[N], r[N], l[N], idx;
+void init()
+{
+	r[0] = 1;
+	l[1] = 0;
+	idx = 2;
+}
+void insert(int k, int x)
+{
+	e[idx] = x;
+	l[idx] = k;
+	r[idx] = r[k];
+	l[r[k]] = idx;
+	r[k] = idx;
+	idx++;
+}
+void remove(int k)
+{
+	l[r[k]] = l[k];
+	r[l[k]] = r[k];
+}
 
-
+//栈
+const int N = 100010;
+int st[N], tt;
+void push(int x)
+{
+	st[++tt] = x;
+}
+void pop()
+{
+	tt--;
+}
+int top()
+{
+	return st[tt];
+}
+bool empty()
+{
+	if (tt > 0)	return false;
+	else	return true;
+}
+const int N = 100010;
+int st[N], tt;
+void push(int x)
+{
+	st[++tt] = x;
+}
+void pop()
+{
+	tt--;
+}
+st[tt];
+if (tt > 0)
+	
+//队列
+const int N = 100010;
+int que[N], head = 0, tail = -1;
+void push(int x)
+{
+	que[++tail] = x;
+}
+void pop()
+{
+	head++;
+}
+que[head];
+if (head <= tail)
