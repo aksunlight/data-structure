@@ -264,6 +264,50 @@ for (int i = 0; i < n; ++i)
 	else	cout << -1 << ' ';
 	stk[++tt] = x;
 }
+const int N = 100010;
+int stk[N], tt;
+for (int i = 0; i < n; ++i)
+{
+	int x;
+	cin >> x;
+	while (tt && stk[tt] >= x)	--tt;
+	if (tt)	cout << st[tt] << ' ';
+	else	cout << -1 << ' ';
+	st[++tt] = x;
+}
+const int N = 100010;
+int stk[N], tt;
+for (int i = 0; i < n; ++i)
+{
+	int x;
+	cin >> x;
+	while (tt && stk[tt] >= x)	--tt;
+	if (tt)	cout << stk[tt] << ' ';
+	else	cout << -1 << ' ';
+	stk[++tt] = x;
+}
+const int N = 100010;
+int stk[N], tt;
+for (int i = 0; i < n; ++i)
+{
+	int x;
+	cin >> x;
+	while (tt && stk[tt] >= x)	--tt;
+	if (tt)	cout << stk[tt] << ' ';
+	else cout << -1 << ' ';
+	stk[++tt] = x;
+}
+const int N = 100010;
+int stk[N], tt;
+for (int i = 0; i < n; ++i)
+{
+	int x;
+	cin >> x;
+	while (tt && stk[tt] >= x)	--tt;
+	if (tt)	cout << stk[tt] << ' ';
+	else	cout << -1 << ' ';
+	stk[++tt] = x;
+}
 //单调队列，用于求滑动窗口的最大/最小值
 const int N = 100010;
 int a[N], que[N], head = 0, teil = -1;
@@ -281,9 +325,61 @@ for (int i = 0; i < n; ++i)	//最大
 	que[++tail] = i;
 	if (i >= k - 1)	cout << a[que[head]];
 }
+const int N = 100010;
+int a[N], que[N], head = 0, tail = -1;
+for (int i = 0; i < n; ++i)
+{
+	if (head <= tail && i - k + 1 > que[head])	head++;
+	while (head <= tail && a[que[tail]] >= a[i])	tail--;
+	que[++tail] = i;
+	if (i >= k - 1)	cout << a[que[head]];
+}
+const int N = 100010;
+int a[N], que[N], head = 0, tail = -1;
+for (int i = 0; i < n; ++i)
+{
+	if (head <= tail && i - k + 1 > que[head])	head++;
+	while (head <= tail && a[que[tail]] >= a[i])	--tail;
+	que[++tail] = i;
+	if (i >= k - 1)	cout << a[que[head]];
+}
+const int N = 100010;
+int a[N], que[N], head = 0, tail = -1;
+for (int i = 0; i < n; ++i)
+{
+	if (head <= tail && que[head] < i - k + 1)	++head;
+	while (head <= tail && a[que[tail]] >= a[i])	--tail;
+	que[++tail] = i;
+	if (i >= k - 1)	cout << a[que[head]];
+}
+const int N = 100010;
+int a[N], que[N], head = 0, tail = -1;
+for (int i = 0; i < n; ++i)
+{
+	if (head <= tail && que[head] < i - k + 1)	++head;
+	while (head <= tail && a[que[tail]] >= a[i])	--tail;
+	que[++tail] = i;
+	if (i >= k - 1)	cout << a[que[head]];
+}
+const int N = 100010;
+int a[N], que[N], head = 0, tail = -1;
+for (int i = 0; i < n; ++i)
+{
+	if (head <= tail && que[head] > i - k + 1)	++head;
+	while (head <= tail && a[que[tail]] >= a[i])	--tail;
+	que[++tail] = i;
+	if (i >= k - 1)	cout << a[que[head]];
+}
 
 //KMP算法
 next[i] = j ==> p[1, j] == p[i - j + 1, i];
+a c d k d e x a
+          i
+	d k d c
+	     j+1
+	    d k d c
+	   nej
+		 j+1
 int n, m;	//n为模式串长度，m为原字符串长度
 char p[N], s[M];	//p为模式串，s为原字符串
 int ne[N];
@@ -305,5 +401,57 @@ for (int i = 1, j = 0; i <= m; i ++ )
         // 匹配成功后的逻辑
 		printf("%d ", i - n + 1);
     }
+}
+int p[N], s[M], ne[N];
+int n, m;
+for (int i = 2, j = 0; i <= n; ++i)
+{
+	while (j && p[i] != p[j + 1])	j = ne[j];
+	if (p[i] == p[j + 1])	++j;
+	ne[i] = j;
+}
+for (int i = 1, j = 0; i <= m; ++i)
+{
+	while(j && s[i] != p[j + 1])	j = ne[j];
+	if (s[i] == p[j + 1])	++j;
+	if (j == n)
+	{
+		j = ne[j];
+		printf("%d ", i - n + 1);
+	}
+}
+int ne[N], p[N], s[M], n, m;
+for (int i = 2, j = 0; i <= n; ++i)
+{
+	while (j && p[i] != p[j + 1])	j = ne[j];
+	if (p[i] == p[j + 1])	++j;
+	ne[i] = j;
+}
+for (int i = 1, j = 0; i <= m; ++i)
+{
+	while(j && s[i] != p[j + 1])	j = ne[j];
+	if (s[i] == p[j + 1])	++j;
+	if (j == n)
+	{
+		j = ne[j];
+		printf("%d ", i - n + 1);
+	}
+}
+int ne[N], p[N], s[M], n, m;
+for (int i = 2, j = 0; i <= n; ++i)
+{
+	while (j && p[i] != p[j + 1])	j = ne[j];
+	if (p[i] == p[j + 1])	++j;
+	ne[i] = j;
+}
+for (int i = 1, j = 0; i <= n; ++i)
+{
+	while (j && s[i] != p[j + 1])	j = ne[j];
+	if (s[i] == p[j + 1])	++j;
+	if (j == n)
+	{
+		j = ne[j];
+		printf("%d ", i - n + 1);
+	}
 }
 
