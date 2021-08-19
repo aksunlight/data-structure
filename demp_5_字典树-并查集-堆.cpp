@@ -258,7 +258,7 @@ void down(int u, int size)
 }
 void up(int u)
 {
-	while (u / 2 && heap[u] > heap[u / 2])
+	while (u / 2 && heap[u] < heap[u / 2])
 	{
 		swap(head[u], head[u / 2]);
 		u >>= 1;
@@ -286,6 +286,5 @@ void up(int u)
 	}
 }
 for (int i = size / 2; i >= 1; --i)	down(i);
-
 
 
