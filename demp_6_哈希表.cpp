@@ -104,6 +104,30 @@ bool find(int x)
 	return false;
 }
 
+//开放寻址法
+const int N = 200003, null = 0x3f3f3f3f;
+int h[N];
+memset(h, 0x3f, sizeof(h));
+//如果x在哈希表中，返回x的下标；如果x不在哈希表中，返回x应该插入的位置
+int find(int x)
+{
+	int k = (x % N + N) % N;
+	while (h[k] != null && h[k] != x)
+	{
+		++k;
+		if (k == N)	k = 0;
+	}
+	return k;
+}
+const int N = 200003, null = 0x3f3f3f3f;
+int h[N];
+memset(h, 0x3f, sizeof h);
+int find(int x)
+{
+	int k = (x % N + N) % N;
+	while (h[k] != null && )
+}
+
 
 
 
