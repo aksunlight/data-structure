@@ -138,7 +138,7 @@ for (int i = head; i != -1; i = ne[i])	cout << e[i] << endl;
 //邻接表模拟双链表
 const int N = 100010;
 int e[N], l[N], r[N], idx;
-void init(void)
+void init()
 {
 	r[0] = 1, l[1] = 0;	//取巧，0点右边是1，1点左边是0
 	idx = 2;
@@ -159,6 +159,7 @@ void remove(int k)
 	r[l[k]] = r[k];
 	l[r[k]] = l[k];
 }
+for (int i = r[0]; i != 1; i = r[i])	cout << e[i] << endl;
 const int N = 100010;
 int e[N], l[N], r[N], idx;
 void init()
@@ -181,7 +182,7 @@ void remove(int k)
 	l[r[k]] = l[k];
 	r[l[k]] = r[k];
 }
-for (int i = 0; i != 1; i = r[i])	cout << e[i] << endl;
+for (int i = r[0]; i != 1; i = r[i])	cout << e[i] << endl;
 const int N = 100010;
 int e[N], r[N], l[N], idx;
 void init()
@@ -204,6 +205,7 @@ void remove(int k)
 	l[r[k]] = l[k];
 	r[l[k]] = r[k];
 }
+for (int i = r[0]; i != 1; i = r[i])	cout << e[i] << endl;
 
 //栈
 const int N = 100010;
@@ -260,6 +262,17 @@ for (int i = 0; i < n; ++i)
 	int x;
 	cin >> x;
 	while (tt && stk[tt] >= x)	tt--;
+	if (tt)	cout << stk[tt] << ' ';
+	else	cout << -1 << ' ';
+	stk[++tt] = x;
+}
+const int N = 100010;
+int stk[N], tt;
+for (int i = 0; i < n; ++i)
+{
+	int x;
+	cin >> x;
+	while (tt && stk[tt] >= x)	--t;
 	if (tt)	cout << stk[tt] << ' ';
 	else	cout << -1 << ' ';
 	stk[++tt] = x;
@@ -445,6 +458,23 @@ for (int i = 2, j = 0; i <= n; ++i)
 	ne[i] = j;
 }
 for (int i = 1, j = 0; i <= n; ++i)
+{
+	while (j && s[i] != p[j + 1])	j = ne[j];
+	if (s[i] == p[j + 1])	++j;
+	if (j == n)
+	{
+		j = ne[j];
+		printf("%d ", i - n + 1);
+	}
+}
+int ne[N], p[N], s[M], n, m;
+for (int i = 2, j = 0; i <= n; ++i)
+{
+	while (j && p[i] != p[j + 1])	j = ne[j];
+	if (p[i] == p[j + 1])	++j;
+	ne[i] = j;
+}
+for (int i = 1, j = 0; i <= m; ++i)
 {
 	while (j && s[i] != p[j + 1])	j = ne[j];
 	if (s[i] == p[j + 1])	++j;

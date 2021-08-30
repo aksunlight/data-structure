@@ -362,3 +362,18 @@ void merge(vector<PII> &segs)
 	
 	segs = res;
 }
+typedef pair<int, int> PII;
+void merge(vector<PII> &segs)
+{
+	vector<PII> res;
+	sort(segs.begin(), segs.end());
+	
+	int st = -2e9, ed = -2e9;
+	for (auto &seg : segs)
+	{
+		if (ed < seg.begin())
+		{
+			
+		}
+	}
+}

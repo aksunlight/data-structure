@@ -169,6 +169,44 @@ for (int i = 1; i <= n; ++i)
 }
 size[find(b)] += size[find(a)];
 p[find(a)] = find(b);
+const int N = 100010;
+int p[N], d[N];	//p[]存储每个点的祖宗节点, d[x]存储x到p[x]的距离
+int find(int x)
+{
+	if (x != p[x])	
+	{
+		int u = find(p[x]);
+		d[x] += d[p[x]];
+		p[x] = u;
+	}
+	return p[x];
+}
+for (int i = 1; i <= n; ++i)
+{
+	p[i] = i;
+	d[i] = 0;
+}
+p[find(a)] = find(b);
+d[find(a)] = distance;
+const int N = 100010;
+int p[N], d[N];
+int find(int x)
+{
+	if (x != p[x])
+	{
+		int u = find(p[x]);
+		d[x] += d[p[x]];
+		p[x] = u;
+	}
+	return p[x];
+}
+for (int i = 1; i <= n; ++n)
+{
+	p[i] = i;
+	d[i] = 0;
+}
+p[find(a)] = find(b);
+d[find(a)] = distance;
 
 //手动的小跟堆
 const int N = 100010;
