@@ -501,11 +501,3 @@ for (int i = 1, j = 0; i <= n; ++i)
 		printf("%d ", i - n + 1);
 	}
 }
-
-int ne[N], p[N], s[M], n, m;
-for (int i = 2, j = 0; i <= n; ++i)
-{
-	while (j && p[i] != p[j + 1])	j = ne[j];
-	if (p[i] == p[j + 1])	++j;
-	ne[i] = j;
-}
