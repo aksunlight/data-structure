@@ -19,12 +19,42 @@ void quick_sort(int a[], int l, int r)
 {
 	if (l >= r)	return;
 	int x = a[l + r >> 1], i = l - 1, j = r + 1;
+	
+	while (i < j)
+	{
+		do ++i;	while (a[i] < x);
+		do --j; while (a[j] > x);
+		if (i < j)	swap(a[i], a[j]);
+	}
+	
+	quick_sort(a, l, j);
+	quick_sort(a, j + 1, r);
+}
+void quick_sort(int a[], int l, int r)
+{
+	if (l >= r)	return;
+	int x = a[l + r >> 1], i = l - 1, j = r + 1;
 	while (i < j)
 	{
 		do ++i; while (a[i] < x);
 		do --j; while (a[j] > x);
 		if (i < j)	swap(a[i], a[j]);
 	}
+	quick_sort(a, l, j);
+	quick_sort(a, j + 1, r);
+}
+void quick_sort(int a[], int l, int r)
+{
+	if (l >= r)	return;
+	int x = a[l + r >> 1], i = l - 1, j = r + 1;
+	
+	while (i < j)
+	{
+		do ++i; while (a[i] < x);
+		do --j; while (a[j] > x);
+		if (i < j)	swap(a[i], a[j]);
+	}
+	
 	quick_sort(a, l, j);
 	quick_sort(a, j + 1, r);
 }
@@ -125,6 +155,26 @@ void merge_sort(int a[], int l, int r)
 void merge_sort(int a[], int l, int r)
 {
 	if (l >= r)	return;
+	int mid = l + r >> 1;
+	
+	merge_sort(a, l, mid);
+	merge_sort(a, mid + 1, r);
+	
+	int i = l, j = mid + 1, k = 0;
+	while (i <= mid && j <= r)
+	{
+		if (a[i] <= a[j])	b[k++] = a[i++];
+		else	b[k++] = a[j++];
+	}
+	
+	while (i <= mid)	b[k++] = a[i++];
+	while (j <= r)	b[k++] = a[j++];
+	
+	for (int i = l, j = 0; i <= r; ++i, ++j)	a[i] = b[j];
+}
+void merge_sort(int a[], int l, int r)
+{
+	if (l >= r)	return;
 	int mid = (l + r) >> 1;
 	merge_sort(a, l, mid), merge_sort(a, mid + 1, r);
 	
@@ -208,7 +258,7 @@ void merge_sort(int a[], int l, int r)
 	for (int i = l, j = 0; i <= r; ++i, ++j)	a[i] = b[j];
 }
 
-//二分查找，找出左半段的右边界1和有半段的左边界2
+//二分查找，找出左半段的右边界1和右半段的左边界2
 bool check(int x)	{...}	//检查x是否满足某种性质
 int bsearch_1(int l, int r)	//找出左半段的右边界
 {
