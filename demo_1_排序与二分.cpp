@@ -1,4 +1,21 @@
 //快速排序模板--基于分治
+void quick_sort(int q[], int l, int r)
+{
+    if (l >= r) return;
+
+    int i = l - 1, j = r + 1, x = q[l + r >> 1];
+    while (i < j)
+    {
+        do i ++ ; while (q[i] < x);
+        do j -- ; while (q[j] > x);
+        if (i < j) swap(q[i], q[j]);
+    }
+    quick_sort(q, l, j), quick_sort(q, j + 1, r);
+}
+作者：yxc
+链接：https://www.acwing.com/blog/content/277/
+来源：AcWing
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 void quick_sort(int a[], int l, int r)
 {
 	if (l >= r)	return;
@@ -14,6 +31,30 @@ void quick_sort(int a[], int l, int r)
 	
 	quick_sort(a, l, j);
 	quick_sort(a, j + 1, r);
+}
+void quick_sort(int a[], int l, int r)
+{
+	if (l >= r)	return;
+	int i = l - 1, j = r + 1, x = l + r >> 1;
+	while (i < j)
+	{
+		do ++i;	while(a[i] < a[x]);
+		do --j; while(a[j] > a[x]);
+		if (i < j)	swap(a[i], a[j]);
+	}
+	quick_sort(a, l, j), quick_sort(a, j + 1, r);
+}
+void quick_sort(int a[], int l, int r)
+{
+	if (l >= r)	return;
+	int i = l - 1, j = r + 1, x = l + r >> 1;
+	while (i < j)
+	{
+		do ++i; while(a[i] < a[x]);
+		do --j; while(a[j] > a[x]);
+		if (i < j)	swap(a[i], a[j]);
+	}
+	quick_sort(a, l, j), quick_sort(a, j + 1, r);	
 }
 void quick_sort(int a[], int l, int r)
 {
@@ -134,6 +175,28 @@ void quick_sort(int a[], int l, int r)
 }
 
 //归并排序--基于分治
+void merge_sort(int q[], int l, int r)
+{
+    if (l >= r) return;
+
+    int mid = l + r >> 1;
+    merge_sort(q, l, mid);
+    merge_sort(q, mid + 1, r);
+
+    int k = 0, i = l, j = mid + 1;
+    while (i <= mid && j <= r)
+        if (q[i] <= q[j]) tmp[k ++ ] = q[i ++ ];
+        else tmp[k ++ ] = q[j ++ ];
+
+    while (i <= mid) tmp[k ++ ] = q[i ++ ];
+    while (j <= r) tmp[k ++ ] = q[j ++ ];
+
+    for (i = l, j = 0; i <= r; i ++, j ++ ) q[i] = tmp[j];
+}
+作者：yxc
+链接：https://www.acwing.com/blog/content/277/
+来源：AcWing
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 void merge_sort(int a[], int l, int r)
 {
 	if (l >= r)	return;
