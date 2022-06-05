@@ -12,10 +12,11 @@ void quick_sort(int q[], int l, int r)
     }
     quick_sort(q, l, j), quick_sort(q, j + 1, r);
 }
-作者：yxc
-链接：https://www.acwing.com/blog/content/277/
-来源：AcWing
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+void quick_sort(int a[], int l, int r)
+{
+	int x = a[l + r >> 1], i = l - 1, j = r + 1;
+	
+}
 void quick_sort(int a[], int l, int r)
 {
 	if (l >= r)	return;
