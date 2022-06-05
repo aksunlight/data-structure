@@ -1,4 +1,7 @@
 //环行引用
+/*
+#include <iostream>
+using namespace std;
 class Node
 {
 public:
@@ -23,7 +26,7 @@ int main()
 	p1->m_next = p2;
 	p2->m_pre = p1;
 }
-
+*/
 
 //智能指针shared_ptr代码实现
 template<typename T>
