@@ -1,5 +1,5 @@
 //高精度加法
-// C = A + B, A >= 0, B >= 0
+//C = A + B, A >= 0, B >= 0
 vector<int> add(vector<int> &A, vector<int> &B)
 {
     if (A.size() < B.size())	return add(B, A);
@@ -333,7 +333,7 @@ vector<int> sub(vector<int> &a, vector<int> &b)
 	vector<int> c;
 	int t = 0;
 	
-	for(int i = 0; i < a.size(); ++i)
+	for (int i = 0; i < a.size(); ++i)
 	{
 		t = a[i] - t;
 		if (i < b.size())	t -= b[i];
@@ -351,7 +351,7 @@ vector<int> sub(vector<int> &a, vector<int> &b)
 	vector<int> c;
 	int t = 0;
 	
-	while (int i = 0; i < a.size(); ++i)
+	for (int i = 0; i < a.size(); ++i)
 	{
 		t = a[i] - t;
 		if (i < b.size())	t -= b[i];
@@ -371,7 +371,7 @@ vector<int> mul(vector<int> &a, int b)
 	vector<int> c;
 	int t = 0;	//表示进位
 	
-	while (int i = 0; i < a.size() || t; ++i)
+	for (int i = 0; i < a.size() || t; ++i)
 	{
 		if (i < a.size())	t += a[i] * b;
 		c.push_back(t % 10);
@@ -380,7 +380,31 @@ vector<int> mul(vector<int> &a, int b)
 	
 	return c;
 }
-vector<int> mul(vector<int> &a, vector<int> &b)
+vector<int> mul(vector<int>& a, int b)
+{
+	vector<int> c;
+	int t = 0;
+	for (int i = 0; i < a.size() || t; ++i)
+	{
+		if (i < a.size())	t += a[i] * b;
+		c.push_back(t % 10);
+		t /= 10;
+	}
+	return c;
+}
+vector<int> mul(vector<int>& a, int b)
+{
+	vector<int> c;
+	int t = 0;
+	for (int i = 0; i < a.size() || t; ++i)
+	{
+		if (i < a.size())	t += a[i] * b;
+		c.push_back(t % 10);
+		t /= 10;
+	}
+	return c;
+}
+vector<int> mul(vector<int> &a, int b)
 {
 	vector<int> c;
 	int t = 0;
@@ -392,9 +416,9 @@ vector<int> mul(vector<int> &a, vector<int> &b)
 		t /= 10;
 	}
 	
-	return t;
+	return c;
 }
-vector<int> mul(vector<int> &a, vector<int> &b)
+vector<int> mul(vector<int> &a, int b)
 {
 	vector<int> c;
 	int t = 0;
@@ -469,6 +493,48 @@ vector<int> div(vector<int>& a, int b, int& r)
 	while (c.siez() > 1 && c.back() == 0)	c.pop_back();
 	return c;
 }
+vector<int> div(vector<int>& a, int b, int& r)
+{
+	vector<int> c;
+	int r = 0;
+	for (int i = a.size() - 1; i >= 0; --i)
+	{
+		r = r * 10 + a[i];
+		c.push_back(r / b);
+		r = r % b;
+	}
+	reserve(c.begin(), c.end());
+	while (c.size() > 1 && c.back() == 0)	c.pop_back();
+	return c;
+}
+vector<int> div(vector<int>& a, int b, int& r)
+{
+	vector<int> c;
+	int r = 0;
+	for (int i = a.size() - 1; i >= 0; --i)
+	{
+		r = r * 10 + a[i];
+		c.push_back(r / b);
+		r = r % b;
+	}
+	reserver(c.begin(), c.end());
+	while (c.size() > 1 && c.back() == 0)	c.pop_back();
+	return c;
+}
+vector<int> div(vector<int>& a, int b, int& r)
+{
+	vector<int> c;
+	int r = 0;
+	for (int i = a.size() - 1; i >= 0; --i)
+	{
+		r = r * 10 + a[i];
+		c.push_back(r / b);
+		r %= 10;
+	}
+	reserver(c.begin(), c.end());
+	while (c.size() > 1 && c.back() == 0)	c.pop_back();
+	return c;
+}
 vector<int> div(vector<int> &a, int b, int &r)
 {
 	vector<int> c;
@@ -530,6 +596,10 @@ for (int i = 1; i <= n; ++i)
 }
 for (int i = 1; i <= n; ++i)
 {
+	s[i] = s[i - 1] + a[i];
+}
+for (int i = 1; i <= n; ++i)
+{
 	a[i] = a[i] + a[i - 1];		//自己变成自己的前缀和
 }
 for (int i = 1; i <= n; ++i)
@@ -563,6 +633,14 @@ for (int i = 1; i <= n; ++i)
 	}
 }
 //求左上角为x1y1右下角为x2y2的矩形的所有数的和
+sum = s[x2][y2] - s[x2][y1 - 1] - s[x1 - 1][y2] + s[x1 - 1][y1 - 1];
+for (int i = 1; i <= n; ++i)
+{
+	for (int j = 1; j <= m; ++j)
+	{
+		s[i][j] = s[i - 1][j] + s[i][j - 1] - s[i - 1][j - 1] + a[i][j];
+	}
+}
 sum = s[x2][y2] - s[x2][y1 - 1] - s[x1 - 1][y2] + s[x1 - 1][y1 - 1];
 for (int i = 1; i <= n; ++i)
 {
